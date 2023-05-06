@@ -28,10 +28,10 @@ function displayBook() {
   myLibrary.forEach((book) => {
     const div = document.createElement("div");
     div.classList.add("card");
-    const titleBook = document.createElement('p');
-    const authorBook = document.createElement('p');
-    const pagesBook = document.createElement('p');
-    const readBook = document.createElement('p');
+    const titleBook = document.createElement("p");
+    const authorBook = document.createElement("p");
+    const pagesBook = document.createElement("p");
+    const readBook = document.createElement("p");
     authorBook.textContent = book.author;
     titleBook.textContent = book.title;
     pagesBook.textContent = book.pages;
@@ -42,7 +42,13 @@ function displayBook() {
     div.appendChild(readBook);
     container.appendChild(div);
   });
-}
+};
+
+const addBookBtn = document.getElementById('addBook');
+addBookBtn.addEventListener('click',() => {
+    const popUpForm = document.getElementById('formPopUp');
+    popUpForm.style.display = 'block';
+});
 
 addBookToLibrary();
 displayBook()
