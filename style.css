@@ -1,6 +1,9 @@
 .card {
-    height: 100px;
-    width: 100px;
+    height: 250px;
+    width: 250px;
+    background: yellowgreen;
+    border-style: solid;
+    border-color: yellow;
 }
 
 .form-popup {
