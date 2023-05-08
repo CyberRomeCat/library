@@ -12,19 +12,30 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
+  let bookName = document.getElementById("book-name");
+  let bookAuthor = document.getElementById("author");
+  let bookPages = document.getElementById("pages");
+  let bookRead = document.getElementById("read-notRead");
 
-  let bookName = document.getElementById('book-name');
-  let bookAuthor = document.getElementById('author');
-  let bookPages = document.getElementById('pages');
+  let bookReadValue = "";
 
-  if((bookName.value || bookAuthor.value || bookPages.value) == '') {
-    console.log('error pls type again')
+  if ((bookName.value || bookAuthor.value || bookPages.value) == "") {
+    console.log("error pls type again");
   } else {
-    const userInput = new Book(bookName.value, bookAuthor.value, bookPages.value);
-    console.log('your book has been pushed :)')
+    if (bookRead.checked) {
+      bookReadValue = "Done reading";
+    } else {
+      bookReadValue = "Not Done reading";
+    }
+    const userInput = new Book(
+      bookName.value,
+      bookAuthor.value,
+      bookPages.value,
+      bookReadValue
+    );
+    console.log("your book has been pushed :)");
     myLibrary.push(userInput);
-  };
-
+  }
 }
 
 function displayBook() {
@@ -47,19 +58,18 @@ function displayBook() {
     div.appendChild(readBook);
     container.appendChild(div);
   });
-};
+}
 
-const addBookBtn = document.getElementById('addBook');
-addBookBtn.addEventListener('click',() => {
-    const popUpForm = document.getElementById('formPopUp');
-    popUpForm.style.display = 'block';
+const addBookBtn = document.getElementById("addBook");
+addBookBtn.addEventListener("click", () => {
+  const popUpForm = document.getElementById("formPopUp");
+  popUpForm.style.display = "block";
 });
 
 const bookForm = document.getElementById("book-form");
-bookForm.addEventListener('submit',(e) => {
-  e.preventDefault()
+bookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
   addBookToLibrary();
-
 });
 
 displayBook();
