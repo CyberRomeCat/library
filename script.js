@@ -12,14 +12,19 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
-  const userInput = new Book(
-    prompt(`type title of book`, "Atomic Habits"),
-    prompt(`type author of book`, "James Clear"),
-    prompt("how many pages does this book have?", "298 pages"),
-    prompt("Have you read it or not", "Yes")
- );
 
-  myLibrary.push(userInput);
+  let bookName = document.getElementById('book-name');
+  let bookAuthor = document.getElementById('author');
+  let bookPages = document.getElementById('pages');
+
+  if((bookName.value || bookAuthor.value || bookPages.value) == '') {
+    console.log('error pls type again')
+  } else {
+    const userInput = new Book(bookName.value, bookAuthor.value, bookPages.value);
+    console.log('your book has been pushed :)')
+    myLibrary.push(userInput);
+  };
+
 }
 
 function displayBook() {
@@ -50,5 +55,11 @@ addBookBtn.addEventListener('click',() => {
     popUpForm.style.display = 'block';
 });
 
-addBookToLibrary();
-displayBook()
+const bookForm = document.getElementById("book-form");
+bookForm.addEventListener('submit',(e) => {
+  e.preventDefault()
+  addBookToLibrary();
+
+});
+
+displayBook();
