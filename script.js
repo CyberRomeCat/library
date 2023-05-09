@@ -1,5 +1,7 @@
 let myLibrary = [];
 
+let lastElement = myLibrary.splice(-2,1);
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -12,10 +14,10 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
-  let bookName = document.getElementById("book-name");
-  let bookAuthor = document.getElementById("author");
-  let bookPages = document.getElementById("pages");
-  let bookRead = document.getElementById("read-notRead");
+  const bookName = document.getElementById("book-name");
+  const bookAuthor = document.getElementById("author");
+  const bookPages = document.getElementById("pages");
+  const bookRead = document.getElementById("read-notRead");
 
   let bookReadValue = "";
 
@@ -35,6 +37,10 @@ function addBookToLibrary() {
     );
     console.log("your book has been pushed :)");
     myLibrary.push(userInput);
+    displayBook();
+    bookName.value = '';
+    bookAuthor.value = '';
+    bookPages.value = '';
   }
 }
 
@@ -43,20 +49,34 @@ function displayBook() {
 
   myLibrary.forEach((book) => {
     const div = document.createElement("div");
+    const btnRemove = document.createElement('button');
+    const readStatus = document.createElement('input');
+    readStatus.setAttribute('checkbox')
     div.classList.add("card");
     const titleBook = document.createElement("p");
     const authorBook = document.createElement("p");
     const pagesBook = document.createElement("p");
     const readBook = document.createElement("p");
+    btnRemove.textContent = 'DELETE';
     authorBook.textContent = book.author;
     titleBook.textContent = book.title;
     pagesBook.textContent = book.pages;
     readBook.textContent = book.read;
+    div.appendChild(readStatus);
     div.appendChild(titleBook);
     div.appendChild(authorBook);
     div.appendChild(pagesBook);
     div.appendChild(readBook);
+    div.appendChild(btnRemove);
     container.appendChild(div);
+    
+
+    btnRemove.addEventListener('click',() => {
+      div.remove();
+      let target = book;
+      let targetIndex = myLibrary.indexOf(target);
+      myLibrary.splice(targetIndex,1);
+    });
   });
 }
 
