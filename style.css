@@ -12,4 +12,13 @@
 
 .form-popup {
     display: none;
+    padding: 4rem;
+    border-style: solid;
+    border-color: aqua;
+    background: aquamarine;
+    border-radius: 5vh;
+    position: absolute;
+    margin-top: 10rem;
+    margin-left: 40rem;
 }
+
