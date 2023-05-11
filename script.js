@@ -12,7 +12,7 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
-  let bookStatusValue = 'Not Done Reading';
+  let bookStatusValue = "Not Done Reading";
 
   const bookName = document.getElementById("book-name");
   const bookAuthor = document.getElementById("author");
@@ -24,8 +24,8 @@ function addBookToLibrary() {
     console.log("error pls type again");
   } else {
     if (bookStatus.checked) {
-      bookStatusValue = 'Done reading';
-    }; 
+      bookStatusValue = "Done reading";
+    }
     let userInput = new Book(
       bookName.value,
       bookAuthor.value,
@@ -38,9 +38,9 @@ function addBookToLibrary() {
     bookName.value = "";
     bookAuthor.value = "";
     bookPages.value = "";
-    popUpForm.style.display = 'none'
-  };
-};
+    popUpForm.style.display = "none";
+  }
+}
 
 function displayBook() {
   const container = document.querySelector(".container");
@@ -69,6 +69,14 @@ function displayBook() {
     div.appendChild(btnRemove);
     container.appendChild(div);
 
+    checkBox.addEventListener("change", () => {
+      if (checkBox.checked) {
+        book.status = "Done Reading";
+      } else {
+        book.status = "Not Done Reading";
+      }
+    });
+
     btnRemove.addEventListener("click", () => {
       div.remove();
       let target = book;
@@ -76,7 +84,7 @@ function displayBook() {
       myLibrary.splice(targetIndex, 1);
     });
   });
-};
+}
 
 const addBookBtn = document.getElementById("addBook");
 addBookBtn.addEventListener("click", () => {
@@ -90,11 +98,10 @@ bookForm.addEventListener("submit", (e) => {
   addBookToLibrary();
 });
 
-const hideForm = document.getElementById('hideForm')
-hideForm.addEventListener('click',() => {
+const hideForm = document.getElementById("hideForm");
+hideForm.addEventListener("click", () => {
   const popUpForm = document.getElementById("formPopUp");
-  popUpForm.style.display = 'none';
-})
-
+  popUpForm.style.display = "none";
+});
 
 displayBook();

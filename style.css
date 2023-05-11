@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 250px;
-    width: 250px;
+    height: 350px;
+    width: 350px;
     background: yellowgreen;
     border-style: solid;
     border-color: yellow;
@@ -12,6 +12,7 @@
 
 .form-popup {
     display: none;
+    flex-direction: column;
     padding: 4rem;
     border-style: solid;
     border-color: aqua;
@@ -21,4 +22,16 @@
     margin-top: 10rem;
     margin-left: 40rem;
 }
+
+#hideForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 1.5rem;
+    width: 2.5rem;
+    padding: 15px;
+    border-radius: 10vh;
+}
+
 
