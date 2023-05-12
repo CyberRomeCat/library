@@ -88,7 +88,7 @@ function displayBook(book) {
 const addBookBtn = document.getElementById("addBook");
 addBookBtn.addEventListener("click", () => {
   const popUpForm = document.getElementById("formPopUp");
-  popUpForm.style.display = "inline-flex";
+  popUpForm.style.display = "flex";
 });
 
 const bookForm = document.getElementById("book-form");
@@ -97,7 +97,7 @@ bookForm.addEventListener("submit", (e) => {
   addBookToLibrary();
 });
 
-const hideForm = document.getElementById("hideForm");
+const hideForm = document.getElementById("hideFormBtn");
 hideForm.addEventListener("click", () => {
   const popUpForm = document.getElementById("formPopUp");
   popUpForm.style.display = "none";

@@ -14,24 +14,31 @@
    <button id="addBook">ADD BOOK</button>
 
    <div class="form-popup" id="formPopUp">
-    <button id="hideForm">X</button>
-    <form action="" id="book-form">
-        <p>
-            <label for="book-name">BOOK NAME:</label>
-            <input type="text" id="book-name" name="book-name">
-        </p>
-        <p>
-            <label for="author">AUTHOR:</label>
-            <input type="text" name="author" id="author">
-        </p>
-        <p>
-            <label for="pages">PAGES:</label>
-            <input type="text" id="pages" name="pages">
-        </p>
-        <label for="read-notRead">READ</label>
-        <input type="checkbox" id="read-notRead" name="read-notRead">
-        <button type="submit">SUBMIT</button>
-    </form>
+        <form action="" id="book-form">
+            <h1 class="header">ADD A NEW BOOK</h1>
+            <p class="type-form">
+                <label for="book-name">Title:</label>
+                <input type="text" id="book-name" name="book-name">
+            </p>
+            <p class="type-form">
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author">
+            </p>
+            <p class="type-form">
+                <label for="pages">Pages:</label>
+                <input type="text" id="pages" name="pages">
+            </p>
+            <div class="container" id="checkbox">
+                <label for="read-notRead">Finished Reading:</label>
+                <input type="checkbox" id="read-notRead" name="read-notRead">
+            </div>
+            <div class="container">
+                <label for="Image">Add Image:</label>
+                <input type="file" id="Image">
+            </div>
+            <button type="submit" id="submit-btn">SUBMIT</button>
+        </form>
+        <button id="hideFormBtn">X</button>
    </div>
 </body>
 </html>
