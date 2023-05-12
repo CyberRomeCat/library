@@ -24,7 +24,7 @@ function addBookToLibrary() {
     console.log("error pls type again");
   } else {
     if (bookStatus.checked) {
-      bookStatusValue = "Done reading";
+      bookStatusValue = "Done Reading";
     }
     let userInput = new Book(
       bookName.value,
@@ -49,9 +49,7 @@ function displayBook(book) {
   div.classList.add("card");
   const btnRemove = document.createElement("button");
   btnRemove.textContent = "DELETE";
-  const checkBox = document.createElement("input");
-  checkBox.setAttribute("type", "checkbox");
-  checkBox.setAttribute("id", "read-notRead");
+  const readStatusBtn = document.createElement("button");
   let titleBook = document.createElement("p");
   let authorBook = document.createElement("p");
   let pagesBook = document.createElement("p");
@@ -59,8 +57,8 @@ function displayBook(book) {
   titleBook.textContent = book.title;
   authorBook.textContent = book.author;
   pagesBook.textContent = book.pages;
-  readBook.textContent = book.read;
-  div.appendChild(checkBox);
+  readStatusBtn.textContent = book.status;
+  div.appendChild(readStatusBtn);
   div.appendChild(titleBook);
   div.appendChild(authorBook);
   div.appendChild(pagesBook);
@@ -68,11 +66,14 @@ function displayBook(book) {
   div.appendChild(btnRemove);
   container.appendChild(div);
 
-  checkBox.addEventListener("change", () => {
-    if (checkBox.checked) {
-      book.status = "Done Reading";
-    } else {
+
+  readStatusBtn.addEventListener("click", () => {
+    if (readStatusBtn.textContent === 'Done Reading')  {
       book.status = "Not Done Reading";
+      readStatusBtn.textContent = book.status;
+    } else if(readStatusBtn.textContent === 'Not Done Reading') {
+      book.status = "Done Reading";
+      readStatusBtn.textContent = book.status;
     }
   });
 
