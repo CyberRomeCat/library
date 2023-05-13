@@ -49,31 +49,42 @@ function displayBook(book) {
   div.classList.add("card");
   const btnRemove = document.createElement("button");
   btnRemove.textContent = "DELETE";
+  btnRemove.classList.add('remove-btn');
   const readStatusBtn = document.createElement("button");
+  readStatusBtn.classList.add('book-status-btn')
   let titleBook = document.createElement("p");
+  titleBook.classList.add('book-title');
   let authorBook = document.createElement("p");
   let pagesBook = document.createElement("p");
   let readBook = document.createElement("p");
   titleBook.textContent = book.title;
-  authorBook.textContent = book.author;
-  pagesBook.textContent = book.pages;
+  authorBook.textContent = `By: ${book.author}`;
+  pagesBook.textContent = `${book.pages} pages`;
   readStatusBtn.textContent = book.status;
-  div.appendChild(readStatusBtn);
   div.appendChild(titleBook);
   div.appendChild(authorBook);
   div.appendChild(pagesBook);
+  div.appendChild(readStatusBtn);
   div.appendChild(readBook);
   div.appendChild(btnRemove);
   container.appendChild(div);
+
+  if (readStatusBtn.textContent === 'Done Reading')  {
+    readStatusBtn.style.color = 'green';
+  } else if(readStatusBtn.textContent === 'Not Done Reading') {
+    readStatusBtn.style.color = 'black';
+  }
 
 
   readStatusBtn.addEventListener("click", () => {
     if (readStatusBtn.textContent === 'Done Reading')  {
       book.status = "Not Done Reading";
+      readStatusBtn.style.color = 'black';
       readStatusBtn.textContent = book.status;
     } else if(readStatusBtn.textContent === 'Not Done Reading') {
       book.status = "Done Reading";
       readStatusBtn.textContent = book.status;
+      readStatusBtn.style.color = 'green';
     }
   });
 

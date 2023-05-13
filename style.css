@@ -15,16 +15,56 @@ h1 {
     gap: 30px;
 }
 
+.container-addbooks {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+#addBook {
+    background-color: lightblue;
+    margin-top: 130px;
+    font-size: xx-large;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+}
+
 .card {
+    font-family: 'Trocchi', serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 280px;
+    gap: 10px;
+    height: 320px;
     width: 280px;
     background: #FEECDC;
     border-style: solid;
-    border-color: yellow;
+    border-color: lightblue;
+    border-radius: 10%;
+}
+
+.book-title {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.book-status-btn {
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    font-family: 'Trocchi', serif;
+    font-weight: bolder;
+}
+
+.remove-btn {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    font-family: 'Trocchi', serif;
+    color: #D22B2B;
+    font-weight: bolder;
 }
 
 label {
@@ -54,7 +94,8 @@ label {
     
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='number'] {
     border-style: solid;
     appearance: none;
     border-radius: 1vh;
