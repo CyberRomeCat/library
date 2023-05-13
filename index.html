@@ -9,36 +9,47 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-   <div class="container">
-   </div>
-   <button id="addBook">ADD BOOK</button>
-
-   <div class="form-popup" id="formPopUp">
-        <form action="" id="book-form">
-            <h1 class="header">ADD A NEW BOOK</h1>
-            <p class="type-form">
-                <label for="book-name">Title:</label>
-                <input type="text" id="book-name" name="book-name">
-            </p>
-            <p class="type-form">
-                <label for="author">Author:</label>
-                <input type="text" name="author" id="author">
-            </p>
-            <p class="type-form">
-                <label for="pages">Pages:</label>
-                <input type="text" id="pages" name="pages">
-            </p>
-            <div class="container" id="checkbox">
-                <label for="read-notRead">Finished Reading:</label>
-                <input type="checkbox" id="read-notRead" name="read-notRead">
+        <div class="header-color-container">
+            <div class="header-container">
+                <div class="header">
+                    <img src="bookshelf.svg" id="books-icon">
+                    <p class="header-text">BookShelf</p>
+                </div>
+                <div class="line"></div>
+                <div class="line-2"></div>
             </div>
-            <div class="container">
-                <label for="Image">Add Image:</label>
-                <input type="file" id="Image">
-            </div>
-            <button type="submit" id="submit-btn">SUBMIT</button>
-        </form>
-        <button id="hideFormBtn">X</button>
+        </div>
+           <div class="bg-image">
+               <div class="container">
+               </div>
+               <button id="addBook">ADD BOOK</button>
+               <div class="form-popup" id="formPopUp">
+                <form action="" id="book-form">
+                    <h1 class="header">ADD A NEW BOOK</h1>
+                    <p class="type-form">
+                        <label for="book-name">Title:</label>
+                        <input type="text" id="book-name" name="book-name">
+                    </p>
+                    <p class="type-form">
+                        <label for="author">Author:</label>
+                        <input type="text" name="author" id="author">
+                    </p>
+                    <p class="type-form">
+                        <label for="pages">Pages:</label>
+                        <input type="text" id="pages" name="pages">
+                    </p>
+                    <div class="container-input" id="checkbox">
+                        <label for="read-notRead">Finished Reading:</label>
+                        <input type="checkbox" id="read-notRead" name="read-notRead">
+                    </div>
+                    <div class="container-input">
+                        <label for="Image">Add Image:</label>
+                        <input type="file" id="Image">
+                    </div>
+                    <button type="submit" id="submit-btn">SUBMIT</button>
+                </form>
+                <button id="hideFormBtn">X</button>
+           </div>
    </div>
 </body>
 </html>

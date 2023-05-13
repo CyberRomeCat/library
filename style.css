@@ -7,14 +7,22 @@ h1 {
     font-family: 'Trocchi', serif;
 }
 
+.container {
+    padding-left: 20px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 350px;
-    width: 350px;
-    background: yellowgreen;
+    height: 280px;
+    width: 280px;
+    background: #FEECDC;
     border-style: solid;
     border-color: yellow;
 }
@@ -54,7 +62,7 @@ input[type='text'] {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.container {
+.container-input {
     margin-top: 12px;
 }
 
@@ -84,5 +92,61 @@ input[type='text'] {
     font-weight: bolder;
     justify-self: baseline;
 }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.header-text {
+    font-family:'Trocchi', serif;
+    font-size: 55px;
+    letter-spacing:15px;
+    margin: 0px;
+    align-self:flex-end;
+    margin-top: 40px;
+}
+
+#books-icon {
+    width: 6rem;
+}
+
+.line, .line-2 {
+    background: black;
+    width:40rem;
+    height: 1.2px;
+}
+
+.line-2 {
+    margin-top: 20px;
+    width: 30rem;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-color-container {
+    height: 170px;
+    width: 100%;
+    background: #FEECDC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.bg-image {
+    background-image: url(empty-bookshelf.jpeg);
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    height: 83vh;
+    margin: 0px;
+}
+
+
 
 
