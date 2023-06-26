@@ -1,15 +1,19 @@
 let myLibrary = [];
 
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
-}
+class Book {
+  
+  constructor(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  };
 
-Book.prototype.info = function () {
-  console.log(`${this.title} by ${this.author},${this.pages},${this.status}`);
-};
+  info() {
+    console.log(`${this.title} by ${this.author},${this.pages},${this.status}`);
+  }
+  
+}
 
 function addBookToLibrary() {
   let bookStatusValue = "Not Done Reading";
