@@ -12,38 +12,63 @@ class Book {
   info() {
     console.log(`${this.title} by ${this.author},${this.pages},${this.status}`);
   }
-  
 }
+
+function emptyValue(name, author, pages, form) {
+  name.value = "";
+  author.value = "";
+  pages.value = "";
+  form.style.display = "none";
+};
+
+function makeUserInput(name, author, pages, status) {
+  let userInput = new Book(
+    name.value,
+    author.value,
+    pages.value,
+    status
+  )
+  return userInput;
+};
+
+ const getInput = (() => {
+  const name = document.getElementById("book-name");
+  const author = document.getElementById("author");
+  const pages = document.getElementById("pages");
+  const status = document.getElementById("read-notRead");
+  const form = document.getElementById("formPopUp");
+
+  return {
+    name,
+    author,
+    pages,
+    status,
+    form,
+  }
+})();
 
 function addBookToLibrary() {
   let bookStatusValue = "Not Done Reading";
 
-  const bookName = document.getElementById("book-name");
-  const bookAuthor = document.getElementById("author");
-  const bookPages = document.getElementById("pages");
-  const bookStatus = document.getElementById("read-notRead");
-  const popUpForm = document.getElementById("formPopUp");
-
-  if ((bookName.value || bookAuthor.value || bookPages.value) == "") {
+  if ((getInput.name.value || getInput.author.value || getInput.pages.value) == "") {
     console.log("error pls type again");
   } else {
-    if (bookStatus.checked) {
+    if (getInput.status.checked) {
       bookStatusValue = "Done Reading";
     }
-    let userInput = new Book(
-      bookName.value,
-      bookAuthor.value,
-      bookPages.value,
-      bookStatusValue
-    );
-    console.log("your book has been pushed :)");
-    myLibrary.push(userInput);
-    displayBook(userInput);
-    bookName.value = "";
-    bookAuthor.value = "";
-    bookPages.value = "";
-    popUpForm.style.display = "none";
-  }
+    let inputOfUser = makeUserInput(getInput.name, getInput.author, getInput.pages, bookStatusValue);
+    myLibrary.push(inputOfUser);
+    displayBook(inputOfUser);
+    emptyValue(getInput.name, getInput.author, getInput.pages, getInput.form);
+  };
+};
+
+function statusStyleBtn(statusBtn) {
+  if (statusBtn.textContent === "Done Reading") {
+    statusBtn.style.color = "green";
+  } else if (statusBtn.textContent === "Not Done Reading") {
+    statusBtn.style.color = "black";
+  };
 }
 
 function displayBook(book) {
@@ -51,20 +76,28 @@ function displayBook(book) {
 
   const div = document.createElement("div");
   div.classList.add("card");
+
   const btnRemove = document.createElement("button");
   btnRemove.textContent = "DELETE";
   btnRemove.classList.add("remove-btn");
+
   const readStatusBtn = document.createElement("button");
   readStatusBtn.classList.add("book-status-btn");
+  readStatusBtn.setAttribute('id', book.title);
+  readStatusBtn.textContent = book.status;
+
   let titleBook = document.createElement("p");
   titleBook.classList.add("book-title");
-  let authorBook = document.createElement("p");
-  let pagesBook = document.createElement("p");
-  let readBook = document.createElement("p");
   titleBook.textContent = book.title;
+
+  let authorBook = document.createElement("p");
   authorBook.textContent = `By: ${book.author}`;
+
+  let pagesBook = document.createElement("p");
   pagesBook.textContent = `${book.pages} pages`;
-  readStatusBtn.textContent = book.status;
+
+  let readBook = document.createElement("p");
+
   div.appendChild(titleBook);
   div.appendChild(authorBook);
   div.appendChild(pagesBook);
@@ -73,11 +106,7 @@ function displayBook(book) {
   div.appendChild(btnRemove);
   container.appendChild(div);
 
-  if (readStatusBtn.textContent === "Done Reading") {
-    readStatusBtn.style.color = "green";
-  } else if (readStatusBtn.textContent === "Not Done Reading") {
-    readStatusBtn.style.color = "black";
-  }
+  statusStyleBtn(readStatusBtn);
 
   readStatusBtn.addEventListener("click", () => {
     if (readStatusBtn.textContent === "Done Reading") {
@@ -88,7 +117,7 @@ function displayBook(book) {
       book.status = "Done Reading";
       readStatusBtn.textContent = book.status;
       readStatusBtn.style.color = "green";
-    }
+    };
   });
 
   btnRemove.addEventListener("click", () => {
@@ -97,7 +126,7 @@ function displayBook(book) {
     let targetIndex = myLibrary.indexOf(target);
     myLibrary.splice(targetIndex, 1);
   });
-}
+};
 
 const addBookBtn = document.getElementById("addBook");
 addBookBtn.addEventListener("click", () => {
