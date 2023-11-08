@@ -1,7 +1,6 @@
 let myLibrary = [];
 
 class Book {
-  
   constructor(title, author, pages, status) {
     this.title = title;
     this.author = author;
@@ -11,8 +10,8 @@ class Book {
 
   info() {
     console.log(`${this.title} by ${this.author},${this.pages},${this.status}`);
-  }
-}
+  };
+};
 
 function emptyValue(name, author, pages, form) {
   name.value = "";
@@ -31,7 +30,7 @@ function makeUserInput(name, author, pages, status) {
   return userInput;
 };
 
- const getInput = (() => {
+const getInput = (() => {
   const name = document.getElementById("book-name");
   const author = document.getElementById("author");
   const pages = document.getElementById("pages");
@@ -87,6 +86,7 @@ function displayBook(book) {
   readStatusBtn.classList.add("book-status-btn");
   readStatusBtn.setAttribute('id', book.title);
   readStatusBtn.textContent = book.status;
+  statusStyleBtn(readStatusBtn);
 
   let titleBook = document.createElement("p");
   titleBook.classList.add("book-title");
@@ -107,8 +107,6 @@ function displayBook(book) {
   div.appendChild(readBook);
   div.appendChild(btnRemove);
   container.appendChild(div);
-
-  statusStyleBtn(readStatusBtn);
 };
 
 function changeStatus(id) {
@@ -137,6 +135,31 @@ function checkStatus(elementID, IDName) {
     elementID.style.color = "green";
     elementID.textContent = "Done Reading"
   };
+};
+
+function errorInput(element) {
+  let id = element.getAttribute("id");
+  let elementError = document.querySelector(`#${id} + span.error`);
+
+  element.addEventListener("input",(e) => {
+    if (element.validity.valid) {
+      elementError.textContent = "";
+      elementError.className = "error";
+    } else {
+      showError(element, elementError);
+    };
+  });
+
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    if (!element.validity.valid) {
+      e.preventDefault();
+      showError(element, elementError);
+    } else {
+      e.preventDefault();
+      addBookToLibrary();
+    };
+  });
 }
 
 function eventListeners() {
@@ -151,13 +174,13 @@ function eventListeners() {
     let idName = e.target.getAttribute("id");
     let card = document.querySelector(`[data-name-delete= "${idName}"]`);
     card.remove();
-    let targetIndex = changeStatus(idName).index
+    let targetIndex = changeStatus(idName).index;
     myLibrary.splice(targetIndex, 1);
     console.log(myLibrary);
   };
   if (e.target.matches('#addBook')) {
     const popUpForm = document.getElementById("formPopUp");
-  popUpForm.style.display = "flex";
+    popUpForm.style.display = "flex";
   }
   if (e.target.matches('#hideFormBtn')) {
     const popUpForm = document.getElementById("formPopUp");
@@ -165,11 +188,15 @@ function eventListeners() {
   };
   });
 
-  const bookForm = document.getElementById("book-form");
-  bookForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    addBookToLibrary();
-  });
+  errorInput(getInput.name);
+  errorInput(getInput.author);
+};
+
+function showError(element, elementError) {
+  if (element.validity.valueMissing) {
+    elementError.textContent = "You need to enter a value";
+    elementError.className = "error active";
+  };
 };
 
 eventListeners();

@@ -90,8 +90,7 @@ label {
 
 #book-form {
     display: grid;
-    grid-column: auto;
-    
+    grid-column: auto;   
 }
 
 input[type='text'],
@@ -184,8 +183,34 @@ input[type='number'] {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     height: 83vh;
     margin: 0px;
-}
+};
 
+input:invalid {
+    border-color: #900;
+    background-color: #fdd;
+  }
+  
+input:focus:invalid {
+    outline: none;
+}
+  
+  /* This is the style of our error messages */
+.error {
+    width: 100%;
+    padding: 0;
+
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+
+    box-sizing: border-box;
+}
+  
+.error.active {
+    padding: 0.3em;
+}
+  
 
 
 

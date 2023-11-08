@@ -26,15 +26,17 @@
                    <button id="addBook">+</button>
                </div>
                <div class="form-popup" id="formPopUp">
-                <form action="" id="book-form">
+                <form action="" id="book-form" novalidate>
                     <h1 class="header">ADD A NEW BOOK</h1>
                     <p class="type-form">
                         <label for="book-name">Title:</label>
-                        <input type="text" id="book-name" name="book-name">
+                        <input type="text" id="book-name" name="book-name" required>
+                        <span class="error" aria-live="polite">
                     </p>
                     <p class="type-form">
                         <label for="author">Author:</label>
-                        <input type="text" name="author" id="author">
+                        <input type="text" name="author" id="author" required>
+                        <span class="error" aria-live="polite"></span>
                     </p>
                     <p class="type-form">
                         <label for="pages">Pages:</label>
