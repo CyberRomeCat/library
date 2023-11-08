@@ -76,10 +76,12 @@ function displayBook(book) {
 
   const div = document.createElement("div");
   div.classList.add("card");
+  div.setAttribute('data-name-delete', book.title);
 
   const btnRemove = document.createElement("button");
   btnRemove.textContent = "DELETE";
-  btnRemove.classList.add("remove-btn");
+  btnRemove.classList.add("delete-btn");
+  btnRemove.setAttribute('id', book.title);
 
   const readStatusBtn = document.createElement("button");
   readStatusBtn.classList.add("book-status-btn");
@@ -107,41 +109,67 @@ function displayBook(book) {
   container.appendChild(div);
 
   statusStyleBtn(readStatusBtn);
+};
 
-  readStatusBtn.addEventListener("click", () => {
-    if (readStatusBtn.textContent === "Done Reading") {
-      book.status = "Not Done Reading";
-      readStatusBtn.style.color = "black";
-      readStatusBtn.textContent = book.status;
-    } else if (readStatusBtn.textContent === "Not Done Reading") {
-      book.status = "Done Reading";
-      readStatusBtn.textContent = book.status;
-      readStatusBtn.style.color = "green";
-    };
+function changeStatus(id) {
+  let index = myLibrary.findIndex(b => {
+    return b.title === id;
   });
 
-  btnRemove.addEventListener("click", () => {
-    div.remove();
-    let target = book;
-    let targetIndex = myLibrary.indexOf(target);
+  const Done = () => {
+    myLibrary[index].status = "Done Reading"
+  };
+
+  const NotDone = () => {
+    myLibrary[index].status = "Not Done Reading"
+  };
+
+  return {Done, NotDone, index};
+};
+
+function checkStatus(elementID, IDName) {
+  if (elementID.textContent === "Done Reading") {
+    changeStatus(IDName).NotDone()
+    elementID.style.color = "black";
+    elementID.textContent = "Not Done Reading";
+  } else if (elementID.textContent === "Not Done Reading") {
+    changeStatus(IDName).Done();
+    elementID.style.color = "green";
+    elementID.textContent = "Done Reading"
+  };
+}
+
+function eventListeners() {
+  let d = document;
+  d.addEventListener("click", (e) => {
+  if (e.target.matches(".book-status-btn")) {
+    let idName = e.target.getAttribute('id');
+    let id = document.getElementById(idName);
+    checkStatus(id, idName);
+  }
+  if (e.target.matches('.delete-btn')) {
+    let idName = e.target.getAttribute("id");
+    let card = document.querySelector(`[data-name-delete= "${idName}"]`);
+    card.remove();
+    let targetIndex = changeStatus(idName).index
     myLibrary.splice(targetIndex, 1);
+    console.log(myLibrary);
+  };
+  if (e.target.matches('#addBook')) {
+    const popUpForm = document.getElementById("formPopUp");
+  popUpForm.style.display = "flex";
+  }
+  if (e.target.matches('#hideFormBtn')) {
+    const popUpForm = document.getElementById("formPopUp");
+    popUpForm.style.display = "none";
+  };
+  });
+
+  const bookForm = document.getElementById("book-form");
+  bookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addBookToLibrary();
   });
 };
 
-const addBookBtn = document.getElementById("addBook");
-addBookBtn.addEventListener("click", () => {
-  const popUpForm = document.getElementById("formPopUp");
-  popUpForm.style.display = "flex";
-});
-
-const bookForm = document.getElementById("book-form");
-bookForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  addBookToLibrary();
-});
-
-const hideForm = document.getElementById("hideFormBtn");
-hideForm.addEventListener("click", () => {
-  const popUpForm = document.getElementById("formPopUp");
-  popUpForm.style.display = "none";
-});
+eventListeners();
